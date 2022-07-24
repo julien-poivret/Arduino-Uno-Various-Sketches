@@ -54,14 +54,14 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly :
+  // put your main code here, to run repeatedly
   PORTB ^= 0x1;
   delay(100);
-  Serial.println(_ADC_read(),Dec);
+  Serial.println(_ADC_read(),DEC);
 }
 
 uint16_t _ADC_read(void){
-  *_PRR &= ~0x1; // Disable power reduction to perform a read.
+  *_PRR &= ~0x1; // disable power reduction to perform a read.
   *_ADCSRA |= 0x7; // Set the sampling rate at 16MHZ/128 sample /sec (125khz)
   *_ADCSRA |= 0xC0; // start 25 ADC conversion cycles. 
   PORTB |= 0x20; // led 13 On reading pending.
