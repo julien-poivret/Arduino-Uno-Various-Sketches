@@ -34,7 +34,7 @@ void loop(){
 
 void Encoder_read(void){
 	current_clock = ((PIND&0x40)>>6);// freeze the scope referance. 
-	if(current_clock != prev_clock){//  if the rotary have changed of state or not.
+	if(current_clock != prev_clock){//  if the rotary has changed of state or not.
 		if(((PIND&0x80)>>7) != current_clock){ // if the rotary pin DT lagg or not the rotary pin CLK
 			if(ct-5>=5){ //minimum value
 				ct-=5;  // Decrement
