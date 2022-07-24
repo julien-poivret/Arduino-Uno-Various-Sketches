@@ -46,10 +46,10 @@ void setup() {
   
   Serial.begin(9600);
   Serial.println("Hello");
-  debug(*_ADMUX,BIN);
+  Serial.println(*_ADMUX,BIN);
   *_ADMUX &= ~0xC0; // reset bit 7 & 6.
   *_ADMUX |= 0x43;  // set ref internal 5v and Analog convertion on A3.
-  debug(*_ADMUX,BIN);
+  Serial.println(*_ADMUX,BIN);
 
 }
 
