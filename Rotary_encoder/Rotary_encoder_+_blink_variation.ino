@@ -32,7 +32,7 @@ void setup(){
 }
 
 void loop(){
-	current_milliseconds = millis();                        //  freeze the time frame referance. 
+	current_milliseconds = millis();                        // freeze the time frame referance. 
 	if((current_milliseconds - prev_milliseconds) >= ct){   // track time frame evolution from target delay
 		PORTB ^= 0x20;                                  // toggle PB5 (Blink on board Led).
 		prev_milliseconds = current_milliseconds;       // reset the cursor to zero.
@@ -42,8 +42,8 @@ void loop(){
 }
 
 void Encoder_read(void){
-	current_clock = ((PIND&0x40)>>6);                 //  hold the current rotary state for compare
-	if(current_clock != prev_clock){                  //  if the rotary has changed of state or not.
+	current_clock = ((PIND&0x40)>>6);                 // hold the current rotary state for compare
+	if(current_clock != prev_clock){                  // if the rotary has changed of state or not.
 		if(((PIND&0x80)>>7) != current_clock){    // if the rotary pin DT lagg or not the rotary pin CLK
 			if(ct-5>=5){                      // check minimum value.
 				ct-=5;                    // Decrement
