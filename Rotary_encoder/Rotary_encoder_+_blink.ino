@@ -2,6 +2,7 @@
  Rotary encoder:
                 on pin 7 for DT
                 on Pin 6 for CLK 
+ Board: Arduino Uno.
  */
 
 uint32_t prev_milliseconds = 0;
@@ -24,7 +25,7 @@ void setup(){
 void loop(){
 	current_milliseconds = millis(); // Update Cursor 
 	if((current_milliseconds - prev_milliseconds) >= ct){ // check cursor from target delay
-		PORTB ^= 0x20; // toggle PB5.
+		PORTB ^= 0x20; // toggle PB5 (Blink on board Led).
 		prev_milliseconds = current_milliseconds; // reset the cursor to zero.
 		Serial.println(ct);
 	}
