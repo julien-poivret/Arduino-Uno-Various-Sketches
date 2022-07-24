@@ -47,7 +47,7 @@ void Encoder_read(void){
 				ct-=5;  // Decrement
 			}
 		}else{ 
-			if(ct<0xFFFFFFFFFFFFFFFF){ // forbid 32 bit overflow.
+			if(ct<0xFFFFFFFFFFFFFFFF){ // forbid 32 bit overflow (likely not).
 			ct+=5;  // Increment
 			}
 		}
