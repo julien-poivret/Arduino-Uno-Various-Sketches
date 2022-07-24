@@ -99,6 +99,6 @@ uint16_t _ADC_read(void){
   uint16_t adc_value = 0;
    adc_value |= * _ADCL;   // read low register first.
    adc_value |= *_ADCH<<8; // next copy high register.  
-  *_ADCSRA &=~ 0x10; // clear conversion flag
+  *_ADCSRA &=~ 0x10; // clear conversion flag ADIF
   return adc_value;
 }
