@@ -43,7 +43,12 @@
       so noise filtration/selectiom its a fundamental electronic topic.
       
       
-               *** before the instant the second is you ***
+      Buffering the output with a ring/circular buffer may prevent noises
+      and allow a fast and more accurate signal reading at the price of a 
+      dalay for the filling the buffer before a noise free reading.
+      
+      fast proccessing quote:
+              *** before the instant the second is you ***
 */
 
 // Arduino Uno Analog Digital Converter registers deffinition.
