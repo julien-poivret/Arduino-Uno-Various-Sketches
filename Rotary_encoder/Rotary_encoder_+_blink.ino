@@ -1,19 +1,26 @@
 /*
+
+ A Digital rotary switch,that allow an accurate & 
+   infinite digital incrementation since mechaniclly 
+   speaking the rotary switch turn in the void.
+ 
  Rotary encoder:
                 on pin 7 for DT
                 on Pin 6 for CLK 
+ 
  Board: Arduino Uno.
+ 
  */
 
-uint32_t prev_milliseconds = 0;
-uint32_t current_milliseconds = 0;
-uint32_t _delay = 500; // in ms
+volatile uint32_t prev_milliseconds = 0;
+volatile uint32_t current_milliseconds = 0;
+volatile uint32_t _delay = 500; // in ms
 
 // Global variables
-uint8_t prev_clock = 0;
-uint8_t current_clock = 0;
-int32_t ct = 500;
-int32_t interval = 500;
+volatile uint8_t prev_clock = 0;
+volatile uint8_t current_clock = 0;
+volatile int32_t ct = 500;
+volatile int32_t interval = 500;
 
 void setup(){
 	Serial.begin(9600);
@@ -23,8 +30,8 @@ void setup(){
 }
 
 void loop(){
-	current_milliseconds = millis(); // Update Cursor 
-	if((current_milliseconds - prev_milliseconds) >= ct){ // check cursor from target delay
+	current_milliseconds = millis(); //  // freeze the time frame referance. 
+	if((current_milliseconds - prev_milliseconds) >= ct){ // track time frame evolution from target delay
 		PORTB ^= 0x20; // toggle PB5 (Blink on board Led).
 		prev_milliseconds = current_milliseconds; // reset the cursor to zero.
 		Serial.println(ct);
@@ -33,14 +40,16 @@ void loop(){
 }
 
 void Encoder_read(void){
-	current_clock = ((PIND&0x40)>>6);// freeze the scope referance. 
-	if(current_clock != prev_clock){//  if the rotary has changed of state or not.
-		if(((PIND&0x80)>>7) != current_clock){ // if the rotary pin DT lagg or not the rotary pin CLK
-			if(ct-5>=5){ //minimum value
+	current_clock = ((PIND&0x40)>>6);                 //  hold the current rotary state for compare
+	if(current_clock != prev_clock){                  //  if the rotary has changed of state or not.
+		if(((PIND&0x80)>>7) != current_clock){    // if the rotary pin DT lagg or not the rotary pin CLK
+			if(ct-5>=5){ // check minimum value.
 				ct-=5;  // Decrement
 			}
-		}else{
+		}else{ 
+			if(ct<0xFFFFFFFFFFFFFFFF){ // forbid 32 bit overflow.
 			ct+=5;  // Increment
+			}
 		}
 	}
 	prev_clock = current_clock; // update actual change for further detecting change.
