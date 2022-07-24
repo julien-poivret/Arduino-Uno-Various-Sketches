@@ -21,7 +21,9 @@
     ,|,                  sm       "-.....-"
      |  -1
      |
-
+ 
+                                   !!! Max Voltage 5 volts on ANALOG IN pin !!!
+ 
 */
 
 // Arduino Uno Analog Digital Converter registers deffinition.
