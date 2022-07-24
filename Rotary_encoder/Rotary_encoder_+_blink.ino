@@ -30,7 +30,7 @@ void setup(){
 }
 
 void loop(){
-	current_milliseconds = millis(); //  // freeze the time frame referance. 
+	current_milliseconds = millis(); //  freeze the time frame referance. 
 	if((current_milliseconds - prev_milliseconds) >= ct){ // track time frame evolution from target delay
 		PORTB ^= 0x20; // toggle PB5 (Blink on board Led).
 		prev_milliseconds = current_milliseconds; // reset the cursor to zero.
