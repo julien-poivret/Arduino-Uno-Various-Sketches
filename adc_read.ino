@@ -44,7 +44,7 @@ volatile uint8_t* _PRR = (volatile uint8_t*) 0x64;   // Power reduction resistor
 
 void setup() {
   // put your setup code here, to run once:
-  DDRB |= 0x21; // led 8 and 13 output.
+  DDRB |= 0x21; // led 8 and 13 in OUTPUT mode.
   
   Serial.begin(9600);
   Serial.println("Hello");
