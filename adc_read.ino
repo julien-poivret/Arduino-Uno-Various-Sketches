@@ -4,7 +4,8 @@
        in order to build a "driver" for the peripheral. 
        ( in a practical use, an AnalogRead may do the trick, most of the time...)
        -> but better to understand hardware in order to track it's technological 
-       evolution and features advantage, specialy when it will be time to work one a more advanced chip technologie. 
+       evolution and features advantage, especially when it will be time to work one 
+       a more advanced chip technologies. 
 
     
        Convert an analog signal in raw and succesives digital values.
@@ -22,8 +23,27 @@
      |  -1
      |
  
-                                   !!! Max Voltage 5 volts on ANALOG IN pin !!!
- 
+        !!! Max Voltage 5 volts on ANALOG IN pin !!!
+                                   
+      When we measure an electrical value we must keep 
+      in mind that noise is coming from many Electro Magnetic 
+      source around the chip. SO, a 10uh in series with 100nf must 
+      filter avcc (pin 20) from any parasitic noise around. 
+        
+            vcc----^^10UH^^--AVCC--|100NF|------GND
+                              |
+                              |
+                            PIN20
+                          
+      (The resonance attenuates parasitic high frequency pulses) 
+      
+      electrons are just mass induced by negatives charges 
+      mass is from gravity hearth... so many sources of emi induce at the 
+      same place and act as a perfect blender on the circuits... 
+      so noise filtration/selectiom its a fundamental electronic topic.
+      
+      
+               *** before the instant the second is you ***
 */
 
 // Arduino Uno Analog Digital Converter registers deffinition.
