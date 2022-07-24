@@ -29,11 +29,11 @@
       in mind that noise is coming from many Electro Magnetic 
       source around the chip. SO, a 10uh in series with 100nf must 
       filter avcc (pin 20) from any parasitic noise around. 
-        
+            
             vcc----^^10UH^^--AVCC--|100NF|------GND
                               |
                               |
-                            PIN20
+                      (chip DIP28 PIN20)
                           
       (The resonance attenuates parasitic high frequency pulses) 
       
