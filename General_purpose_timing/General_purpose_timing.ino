@@ -14,7 +14,7 @@ void setup(){
 
 void loop(){
 	current_milliseconds = millis(); //Update Cursor
-	if((current_milliseconds - prev_milliseconds) >= _delay){ // check cursor from target delay
+	if((current_milliseconds - prev_milliseconds) >= _delay){ // check updated cursordifference from target delay
 		PORTB ^= 0x20; // toggle PB5.
 		prev_milliseconds = current_milliseconds; // reset the cursor to start referance.
 	}
