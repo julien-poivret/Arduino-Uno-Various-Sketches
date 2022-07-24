@@ -1,0 +1,46 @@
+/*
+ Rotary encoder:
+                on pin 7 for DT
+                on Pin 6 for CLK 
+ */
+
+uint32_t prev_milliseconds = 0;
+uint32_t current_milliseconds = 0;
+uint32_t _delay = 500; // in ms
+
+// Global variables
+uint8_t prev_clock = 0;
+uint8_t current_clock = 0;
+int32_t ct = 500;
+int32_t interval = 500;
+
+void setup(){
+	Serial.begin(9600);
+	DDRB |= 0x20;  // PB5 OUTPUT.
+	DDRD &= ~0xC0;    // PD6 & PD7 as simple INPUT
+	prev_clock = (PIND&0x40); // save Digital Read of PD6 (rotary CLK pin).
+}
+
+void loop(){
+	current_milliseconds = millis(); // Update Cursor 
+	if((current_milliseconds - prev_milliseconds) >= ct){ // check cursor from target delay
+		PORTB ^= 0x20; // toggle PB5.
+		prev_milliseconds = current_milliseconds; // reset the cursor to zero.
+		Serial.println(ct);
+	}
+	Encoder_read(); // Function call
+}
+
+void Encoder_read(void){
+	current_clock = ((PIND&0x40)>>6);// freeze the scope referance. 
+	if(current_clock != prev_clock){//  if the rotary have changed of state or not.
+		if(((PIND&0x80)>>7) != current_clock){ // if the rotary pin DT lagg or not the rotary pin CLK
+			if(ct-5>=5){ //minimum value
+				ct-=5;  // Decrement
+			}
+		}else{
+			ct+=5;  // Increment
+		}
+	}
+	prev_clock = current_clock; // update actual change for further detecting change.
+}
