@@ -12,8 +12,8 @@
  
  */
 
-volatile uint32_t prev_milliseconds = 0;
-volatile uint32_t current_milliseconds = 0;
+volatile unsigned long prev_milliseconds = 0;
+volatile unsigned long current_milliseconds = 0;
 volatile uint32_t _delay = 500; // in ms
 
 // Global variables
