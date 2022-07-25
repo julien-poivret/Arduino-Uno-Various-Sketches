@@ -4,7 +4,7 @@
    infinite digital incrementation since mechanically 
    speaking the rotary switch, turn in the void... 
    An "accurate select" may be produced by turning 
-   the rotarry very gently.
+   the rotary very gently.
    
    ->Neat for driving thresholds values or stepped setting at an exact digital value. 
  
