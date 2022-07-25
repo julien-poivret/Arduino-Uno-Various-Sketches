@@ -1,3 +1,5 @@
+"#include <avr/io.h>"
+"#include <util/delay.h"
 
 default:
   avr-gcc -Os -DF_CPU=1600000UL -mmcu=atmega328p -c -o led.o led.c
