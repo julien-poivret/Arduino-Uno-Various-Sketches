@@ -1,3 +1,5 @@
+"notes not working.
+
 avr-gcc -Os -DF_CPU=1600000UL -mmcu=atmega328p -c -o led.o led.c
 avr-gcc -o led.bin led.o
 avr-objcopy -O ihex -R .eeprom led.bin led.hex
