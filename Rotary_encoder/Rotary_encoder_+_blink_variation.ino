@@ -1,10 +1,12 @@
 /*
 
  A Digital rotary switch,that allow an accurate & 
-   infinite digital incrementation since mechaniclly 
-   speaking the rotary switch turn in the void.
+   infinite digital incrementation since mechanically 
+   speaking the rotary switch, turn in the void... 
+   An "accurate select" may be produced by turning 
+   the rotarry very gently.
    
-   Neat for driving thresholds values or stepped setting. 
+   ->Neat for driving thresholds values or stepped setting at an exact digital value. 
  
  Rotary encoder:
                 on pin 7 for DT
@@ -36,7 +38,6 @@ void loop(){
 	if((current_milliseconds - prev_milliseconds) >= ct){   // track time frame evolution from target delay
 		PORTB ^= 0x20;                                  // toggle PB5 (Blink on board Led).
 		prev_milliseconds = current_milliseconds;       // reset the cursor to zero.
-		Serial.println(ct);
 	}
 	Encoder_read(); // Function call
 }
@@ -54,5 +55,6 @@ void Encoder_read(void){
 			}
 		}
 	}
+	Serial.println(ct);
 	prev_clock = current_clock;                       // update actual change for further detecting change.
 }
