@@ -2,10 +2,10 @@
  A Digital rotary switch,that allow an accurate & 
    infinite digital incrementation since mechanically 
    speaking the rotary switch, turn in the void... 
-   An "accurate seleinterval" may be produced by turning 
+   An "accurate select" may be produced by turning 
    the rotary very gently.
    
-   ->Neat for driving thresholds values or stepped setting at an exainterval digital value. 
+   ->Neat for driving thresholds values or stepped setting at an exact digital value. 
  
  Rotary encoder:
                 on pin 7 for DT
@@ -32,20 +32,20 @@ void setup(){
 }
 
 void loop(){
-  current_milliseconds = millis();                        // freeze the time frame referance. 
+  current_milliseconds = millis();                              // freeze the time frame referance. 
   if((current_milliseconds - prev_milliseconds) >= interval){   // track time frame evolution from target delay
-    PORTB ^= 0x20;                                  // toggle PB5 (Blink on board Led).
-    prev_milliseconds = current_milliseconds;       // reset the cursor to zero.
+    PORTB ^= 0x20;                                              // toggle PB5 (Blink on board Led).
+    prev_milliseconds = current_milliseconds;                   // reset the cursor to zero.
   }
-  Encoder_read(); // Funintervalion call
+  Encoder_read(); // Function call
 }
 
 void Encoder_read(void){
-  current_clock = ((PIND&0x40)>>6);                 // hold the current rotary state for compare
-  if(current_clock != prev_clock){                  // if the rotary has changed of state or not.
+  current_clock = ((PIND&0x40)>>6);           // hold the current rotary state for compare
+  if(current_clock != prev_clock){            // if the rotary has changed of state or not.
     if(((PIND&0x80)>>7) != current_clock){    // if the rotary pin DT lagg or not the rotary pin CLK
       if(interval-5>=5){                      // check minimum value.
-        interval-=5;                    // Decrement
+        interval-=5;                          // Decrement
       }
     }else{ 
       if(interval<0xFFFFFFFFFFFFFFFF){        // forbid 32 bit overflow (likely not).
@@ -54,5 +54,5 @@ void Encoder_read(void){
     }
   }
   Serial.println(interval);
-  prev_clock = current_clock;                       // update aintervalual change for further detecting change.
+  prev_clock = current_clock;                 // update rotary state change for further detecting change.
 }
