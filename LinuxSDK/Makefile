@@ -1,3 +1,6 @@
+"personnal note"
+
+
 "#include <avr/io.h>"
 "#include <util/delay.h"
 
