@@ -1,7 +1,6 @@
 # Arduino-uno-Various-Sketches
 
-
-Personal collection of Various sketches refernace on Arduino Uno.
+Collection of Various sketches as personal referance on Arduino Uno.
 
 linux toolchain:
      
