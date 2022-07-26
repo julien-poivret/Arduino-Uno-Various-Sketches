@@ -1,6 +1,6 @@
 "Makefile_vb"
 
-"Experimental Makefile for toolchain study ------------------------------------------------------------------"
+"Experimental Makefile for a toolchain study ------------------------------------------------------------------"
 " For a practical use arduino IDE is just the right match, that's not the point.
 " but for a learning point of view time come when you will need to see behind the preprocessing .ino
 " file and see how you can boot the chip in pur c language with just a ship manufacturer startup file
