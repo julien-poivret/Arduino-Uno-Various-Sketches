@@ -1,12 +1,12 @@
 "Makefile_vb"
 
 "Experimental Makefile for toolchain study ------------------------------------------------------------------"
-" For a practical use arduino IDE is just the right match, that not the point.
+" For a practical use arduino IDE is just the right match, that's not the point.
 " but for a learning point of view time come when you will need to see behind the preprocessing .ino
 " file and see how you can boot the chip in pur c language with just a ship manufacturer startup file
-" it's ONLY from there that you will be able to add layer of complexcity without loosing your mind.
-" and hold a "kind of knowledge" making you ready to deal with other programer library/linking/addaptation
-" and maintining the link for next generation.
+" it's ONLY from there that you will be able to add layers of complexcity without loosing your mind.
+" and hold a "kind of knowledge" making you ready to deal with other programers library/linking/addaptation
+" and maintining the link for next generations.
 "
 " That why this.
 " 
