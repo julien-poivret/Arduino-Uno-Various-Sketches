@@ -12,8 +12,6 @@
 " 
 "So far it's nothing of unknow.
 
-
-
 FILENAME = blink
 PORT = /dev/ACM0.....
 DEVICE = atmega328p
