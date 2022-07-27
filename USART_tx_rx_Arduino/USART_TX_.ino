@@ -56,12 +56,12 @@ volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;  //     Baud Rate low reg
    init UART0 with two possible settings: 9600 or 115200.
 */
 void UART0_init(uint16_t BaudRate){
-	*_SER &=~0x80;        // Disable global interrupt. 
+	*_SER &=~0x80;                                  // Disable global interrupt. 
 
-  *_UCSR0C &= ~0xC;     // Set asynchronous mode.
-	*_UCSR0A |= 0x2;	    // Set the (FULL speed) for asynchronous mode.
+  *_UCSR0C &= ~0xC;                                    // Set asynchronous mode.
+*_UCSR0A |= 0x2;	                       // Set the (FULL speed) for asynchronous mode.
 
-  // Set the Baudrate. ----->  baud_setting = (F_CPU / 4 / baud - 1) / 2
+// Set the Baudrate. ----->  baud_setting = (F_CPU / 4 / baud - 1) / 2
 	if(BaudRate==9600){ 
 		*_UBRR0H &= ~ 0xF;
 		*_UBRR0L = 0xCF;
@@ -70,15 +70,16 @@ void UART0_init(uint16_t BaudRate){
 		*_UBRR0L = 0x10;
 	}
 
-	// Set the frame in 8 bits mode.
-   *_UCSR0C |= 0x6;
-	 *_UCSR0C &= ~0x8; // (1 stop bit).
+// Set the frame in 8 bits mode.
+*_UCSR0C |= 0x6;
+*_UCSR0C &= ~0x8; // (1 stop bit).
 
-  // Enable Rx Tx mode + Interrupts + 8 bits mode part2.
-   *_UCSR0B = 0xB8;
+// Enable Rx Tx mode + Interrupts + 8 bits mode part2.
+*_UCSR0B = 0xB8;
 
-	 *_SER |= 0x80; // Enable global interrupt. 
+*_SER |= 0x80; // Enable global interrupt. 
 }
+
 /*
    Send data with exact predefined length (for speed)
 */
