@@ -53,10 +53,10 @@
        init UART0 with two possibles settings: 9600 or 115200.
      */
     void UART0_init(uint16_t BaudRate){
-      *_SER &=~0x80;                                  // Disable global interrupt. 
+      *_SER &=~0x80;                                       // Disable global interrupt. 
 
       *_UCSR0C &= ~0xC;                                    // Set asynchronous mode.
-      *_UCSR0A |= 0x2;                         // Set the (FULL speed) for asynchronous mode.
+      *_UCSR0A |= 0x2;                                     // Set the (FULL speed) for asynchronous mode.
 
       // Set the Baudrate. ----->  baud_setting = (F_CPU / 4 / baud - 1) / 2
       if(BaudRate==9600){ 
@@ -92,7 +92,7 @@ void UART_send(char* asci_data,uint8_t length){
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 int main(void){
-  UART0_init(9600);                               //              Classic function call.
+  UART0_init(9600);      // Classic function call.
   UART_send("test A\n",7);
   UART_send("test B\n",7);
   UART_send("Buffer Overflow !\n",18);
