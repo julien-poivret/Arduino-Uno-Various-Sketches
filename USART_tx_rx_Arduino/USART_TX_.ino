@@ -46,11 +46,15 @@ volatile uint8_t* _UCSR0A = (volatile uint8_t *) 0xC0;  //      Control and stat
 volatile uint8_t* _UCSR0B = (volatile uint8_t *) 0xC1;  //      Control and status register B
 volatile uint8_t* _UCSR0C = (volatile uint8_t *) 0xC2;  //      Control and status register C
 
-volatile uint8_t* _UBRR0H = (volatile uint8_t *) 0xC5;
-volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;
+volatile uint8_t* _UBRR0H = (volatile uint8_t *) 0xC5;  //     Baud Rate Hight register
+volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;  //     Baud Rate low register
 
 
-//////////////////////////////////////////////////////////// UART0 config.
+//////////////////////////////////////////////////////////// UART0
+
+/*
+   init UART0 with two possible settings: 9600 or 115200.
+*/
 void UART0_init(uint16_t BaudRate){
 	*_SER &=~0x80;        // Disable global interrupt. 
 
@@ -75,19 +79,22 @@ void UART0_init(uint16_t BaudRate){
 
 	 *_SER |= 0x80; // Enable global interrupt. 
 }
-
+/*
+   Send data with exact predefined length (for speed)
+*/
 void UART_send(char* asci_data,uint8_t length){
 	*_UCSR0B |= 0x8;
 	for(uint8_t i=0;i<length;i++){
-		while(!(*_UCSR0A&0x20)){ // wait for tx complete
+		while(!(*_UCSR0A&0x20)){ // wait for prev tx to complete
 			asm("");
 		}
-		*_UDR0 = *(asci_data+i); // write stacked bytes on buffer.
+		*_UDR0 = *(asci_data+i); // ready!, so write the next stacked bytes on buffer.
 	}
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 int main(void){
-	UART0_init(9600);        
+	UART0_init(9600);                               //              Classic function call.
 	UART_send("test A\n",7);
 	UART_send("test B\n",7);
 	UART_send("Buffer Overflow !\n",18);
