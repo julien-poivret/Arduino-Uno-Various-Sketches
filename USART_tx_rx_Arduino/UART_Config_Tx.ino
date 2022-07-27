@@ -50,7 +50,7 @@
     //////////////////////////////////////////////////////////// UART0
 
     /*
-       init UART0 with two possible settings: 9600 or 115200.
+       init UART0 with two possibles settings: 9600 or 115200.
      */
     void UART0_init(uint16_t BaudRate){
       *_SER &=~0x80;                                  // Disable global interrupt. 
