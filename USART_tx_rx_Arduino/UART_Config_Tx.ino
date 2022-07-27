@@ -94,7 +94,7 @@ void UART_receive(char* asci_data,uint8_t length, uint8_t* Error_flag){
 	*_UCSR0B |= 0x10; // Rx Enabled.
 	for(uint8_t i=0;i<length;i++){
 		uint8_t ct = 0;
-		while(!(*_UCSR0A&0x80)){
+		while(!(*_UCSR0A&0x80)){ // wait for buffer ready
 			if(ct==0xFF){    // if time out is reach => Error !
 				*Error_flag = 1;
 				break;
