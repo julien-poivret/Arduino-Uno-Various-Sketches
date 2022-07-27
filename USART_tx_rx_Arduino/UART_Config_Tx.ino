@@ -113,7 +113,7 @@ int main(void){
 	UART_send("test B\n",7);
 	UART_send("Buffer Overflow !\n",18);
 	UART_send("Electro Magnetic wave !\n",24);
-	volatile uint8_t error_flg = 0;
+        uint8_t error_flg = 0;
 	UART_receive((char *)data_rx,24,&error_flg);
 	if(error_flg){
 		UART_send("Error, Rx fail !\n",17);
