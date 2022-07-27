@@ -81,7 +81,7 @@
    Send data with exact predefined length (for speed)
 */
 void UART_send(char* asci_data,uint8_t length){
-  *_UCSR0B |= 0x8;
+  *_UCSR0B |= 0x8; //Tx Enabled.
   for(uint8_t i=0;i<length;i++){
     while(!(*_UCSR0A&0x20)){ // wait for prev tx to complete
       asm("");
@@ -89,17 +89,39 @@ void UART_send(char* asci_data,uint8_t length){
     *_UDR0 = *(asci_data+i); // ready!, so write the next stacked bytes on buffer.
   }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
 
-int main(void){
-  UART0_init(9600);      // Classic function call.
-  UART_send("test A\n",7);
-  UART_send("test B\n",7);
-  UART_send("Buffer Overflow !\n",18);
-  UART_send("Electro Magnetic wave !\n",24);
-  while(1){
-    asm("");
-  }
+void UART_receive(char* asci_data,uint8_t length, uint8_t* Error_flag){
+	*_UCSR0B |= 0x10; // Rx Enabled.
+	for(uint8_t i=0;i<length;i++){
+		uint8_t ct = 0;
+		while(!(*_UCSR0A&0x80)){
+			if(ct==0xFF){    // if time out is reach => Error !
+				*Error_flag = 1;
+				break;
+			}
+			ct++;
+		}
+		*(asci_data+i) = *_UDR0;
+	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+char data_rx[24]={0};
+int main(void){
+	UART0_init(9600);      // Classic function call.
+	UART_send("test A\n",7);
+	UART_send("test B\n",7);
+	UART_send("Buffer Overflow !\n",18);
+	UART_send("Electro Magnetic wave !\n",24);
+	volatile uint8_t error_flg = 0;
+	UART_receive((char *)data_rx,24,&error_flg);
+	if(error_flg){
+		UART_send("Error, Rx fail !\n",17);
+	}else{
+		UART_send("Rx Completed\n",13);
+	}
+	while(1){
+		asm("");
+	}
+}
 
