@@ -31,14 +31,15 @@ Collection of Various sketches as personal referance on Arduino Uno.
    
    http://busyducks.com/ascii-art-arduinos
 
+for udev rules just run ( in the installation folder )
+
+./arduino-linux-setup.sh $USER
+
+
 linux toolchain:
      
-     sudo apt install gcc-avr avr-libc binutils-avr avrdude openocd         
+     sudo apt install gcc-avr avr-libc binutils-avr avrdude openocd 
+     
+     curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
-for USBtiny ICSP ADD in /etc/udev/rules.d/99-USBtiny.rules
 
-SUBSYSTEM=="usb", ATTR{product}=="USBtiny", ATTR{idProduct}=="0c9f", ATTRS{idVendor}=="1781", MODE="0660", GROUP="dialout"
-
-then type:
-
-$ usermod -aG dialout ${USER}
