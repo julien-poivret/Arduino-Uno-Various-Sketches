@@ -133,7 +133,7 @@ int main(void){
 	uint8_t error_flg = 0;
 	UART_receive((char *)data_rx,24,&error_flg);
 	if(error_flg){
-		UART_send("Error, Rx fail !\n");
+		UART_send("Error, Rx Connection lost !\n");
 	}else{
 		UART_send_fast("Rx Completed\n",13);
 	}
