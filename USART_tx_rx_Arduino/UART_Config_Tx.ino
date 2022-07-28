@@ -78,9 +78,9 @@
     }
 
 /*
-   Send data with exact predefined length (for speed)
+   Send data with exact predefined length (for speed).
 */
-void UART_send(char* asci_data,uint8_t length){
+void UART_send_fast(char* asci_data,uint8_t length){
   *_UCSR0B |= 0x8; //Tx Enabled.
   for(uint8_t i=0;i<length;i++){
     while(!(*_UCSR0A&0x20)){ // wait for prev tx to complete
@@ -89,12 +89,29 @@ void UART_send(char* asci_data,uint8_t length){
     *_UDR0 = *(asci_data+i); // ready!, so write the next stacked bytes on buffer.
   }
 }
-
+/*
+   Send data with automatic stack length (slower).
+*/
+void UART_send(char* asci_data){
+	*_UCSR0B |= 0x8; //Tx Enabled.
+	uint8_t ct = 0;
+	while(1){
+		while(!(*_UCSR0A&0x20)){ // wait for prev tx to complete
+			asm("");
+		}
+		if(*(asci_data+ct)){        // if not a terminating bytes (0).
+			*_UDR0 = *(asci_data+ct); //  write the next stacked bytes on buffer.
+			ct++;
+		}else{
+			break;
+		}
+	}
+}
 void UART_receive(char* asci_data,uint8_t length, uint8_t* Error_flag){
 	*_UCSR0B |= 0x10; // Rx Enabled.
 	for(uint8_t i=0;i<length;i++){
 		uint8_t ct = 0;
-		while(!(*_UCSR0A&0x80)){ // wait for buffer ready
+		while(!(*_UCSR0A&0x80)){
 			if(ct==0xFF){    // if time out is reach => Error !
 				*Error_flag = 1;
 				break;
@@ -109,16 +126,16 @@ void UART_receive(char* asci_data,uint8_t length, uint8_t* Error_flag){
 char data_rx[24]={0};
 int main(void){
 	UART0_init(9600);      // Classic function call.
-	UART_send("test A\n",7);
-	UART_send("test B\n",7);
-	UART_send("Buffer Overflow !\n",18);
-	UART_send("Electro Magnetic wave !\n",24);
-        uint8_t error_flg = 0;
+	UART_send_fast("test A\n",7);
+	UART_send_fast("test B\n",7);
+	UART_send_fast("Buffer Overflow !\n",18);
+	UART_send_fast("Electro Magnetic wave !\n",24);
+	uint8_t error_flg = 0;
 	UART_receive((char *)data_rx,24,&error_flg);
 	if(error_flg){
-		UART_send("Error, Rx fail !\n",17);
+		UART_send("Error, Rx fail !\n");
 	}else{
-		UART_send("Rx Completed\n",13);
+		UART_send_fast("Rx Completed\n",13);
 	}
 	while(1){
 		asm("");
