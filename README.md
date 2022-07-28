@@ -31,10 +31,13 @@ Collection of Various sketches as personal referance on Arduino Uno.
    
    http://busyducks.com/ascii-art-arduinos
 
-for udev rules just run ( in the installation folder )
+Arduino Software at:
 
-./arduino-linux-setup.sh $USER
+https://www.arduino.cc/en/software
 
+-> for udev rules just run ( in the installation folder )
+
+./arduino-linux-setup.sh $USER\
 
 linux toolchain:
      
