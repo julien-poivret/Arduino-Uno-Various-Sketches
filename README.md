@@ -35,5 +35,9 @@ linux toolchain:
      
      sudo apt install gcc-avr avr-libc binutils-avr avrdude openocd         
 
+for USBtiny ICSP ADD in /etc/udev/rules.d/99-USBtiny.rules
 
+SUBSYSTEM=="usb", ATTR{product}=="USBtiny", ATTR{idProduct}=="0c9f", ATTRS{idVendor}=="1781", MODE="0660", GROUP="dialout"
 
+then type:
+usermod -aG dialout ${USER}
