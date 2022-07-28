@@ -137,6 +137,9 @@ int main(void){
 	}else{
 		UART_send_fast("Rx Completed\n",13);
 	}
+	UART_send("Wave,surf fresh air !\n");
+	UART_send("that's a command line !@#$%^&*()");
+	UART_send(" Thank you, bye !\n");
 	while(1){
 		asm("");
 	}
