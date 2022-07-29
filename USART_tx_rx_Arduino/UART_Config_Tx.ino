@@ -32,7 +32,7 @@
      `---._.-------------------------------------------------------------._.---'
 
 
-             *** what ever we can say, tactile screen key bord suck ! ***
+             *** what ever we can say, tactile screen key board suck ! ***
 */
 
     /////////////////////////     Define peripherals registers.
