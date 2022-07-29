@@ -41,7 +41,7 @@ https://www.arduino.cc/en/software
 
 linux toolchain:
      
-     sudo apt install gcc-avr avr-libc binutils-avr avrdude openocd 
+     sudo apt install gcc-avr gdb-avr avr-libc binutils-avr avrdude 
      
      curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
