@@ -1,4 +1,5 @@
-/*                         Serial Communication Protocol study.
+/*                         
+                        Serial Communication Protocol study.
                    a light weight code for printing on Serial port.
                    ________________________________________________
                   /                                                \
@@ -30,7 +31,7 @@
      `---._.-------------------------------------------------------------._.---'
 
 
-
+               *** what ever we can say, tactile screen key bord suck !
     */
 
     /////////////////////////     Define peripherals registers.
@@ -47,8 +48,8 @@
     volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;  //     Baud Rate low register
 
 
-    //////////////////////////////////////////////////////////// UART0
 
+    //////////////////////////////////////////////////////////// UART0
     /*
        init UART0 with two possibles settings: 9600 or 115200.
      */
@@ -110,10 +111,10 @@ void UART_send(char* asci_data){
 void UART_receive(char* asci_data,uint8_t length, uint8_t* Error_flag){
 	*_UCSR0B |= 0x10; // Rx Enabled.
 	for(uint8_t i=0;i<length;i++){
-		uint8_t ct = 0;
+		uint16_t ct = 0;
 		while(!(*_UCSR0A&0x80)){
-			if(ct==0xFF){    // if time out is reach => Error !
-				*Error_flag = 1;
+			if(ct>=0xFF){    // if time out is reach => Error !
+				*Error_flag = 1;// Timout must be adjusted...
 				break;
 			}
 			ct++;
