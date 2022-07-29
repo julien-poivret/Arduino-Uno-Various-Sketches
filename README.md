@@ -39,7 +39,7 @@ https://www.arduino.cc/en/software
 
 ./arduino-linux-setup.sh $USER
 
-linux toolchain:
+Linux toolchain:
      
      sudo apt install gcc-avr gdb-avr avr-libc binutils-avr avrdude 
      
