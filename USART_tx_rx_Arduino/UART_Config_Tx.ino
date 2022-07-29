@@ -73,8 +73,8 @@
       *_UCSR0C |= 0x6;
       *_UCSR0C &= ~0x8; // (1 stop bit).
 
-      // Enable Rx Tx mode + Interrupts + 8 bits mode part2.
-      *_UCSR0B = 0xB8;
+      // Enable Rx Tx mode + 8 bits mode part2.
+      *_UCSR0B = 0x18;
 
       *_SER |= 0x80; // Enable global interrupt. 
     }
