@@ -1,4 +1,5 @@
-/*                         
+/*
+
                         Serial Communication Protocol study.
                    a light weight code for printing on Serial port.
                    ________________________________________________
@@ -31,8 +32,8 @@
      `---._.-------------------------------------------------------------._.---'
 
 
-               *** what ever we can say, tactile screen key bord suck !
-    */
+             *** what ever we can say, tactile screen key bord suck ! ***
+*/
 
     /////////////////////////     Define peripherals registers.
 
