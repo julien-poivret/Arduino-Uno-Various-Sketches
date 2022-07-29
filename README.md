@@ -35,7 +35,7 @@ Arduino Software at:
 
 https://www.arduino.cc/en/software
 
--> for udev rules just run ( from the installation folder )
+-> for udev rules just run ( from the installation folder ) in the Terminal:
 
 ./arduino-linux-setup.sh $USER
 
