@@ -37,7 +37,7 @@ https://www.arduino.cc/en/software
 
 -> for udev rules just run ( in the installation folder )
 
-./arduino-linux-setup.sh $USER\
+./arduino-linux-setup.sh $USER
 
 linux toolchain:
      
