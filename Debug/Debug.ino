@@ -43,8 +43,10 @@
 
 
                    (  Work only on 8 bits in it's form.  )
-  bp function: 
-	             label: 
+  
+  bp function decription: 
+  
+	       label: 
                       name of the breakpoint in char* exemple: "someting"
    
    breakpoint_number: 
