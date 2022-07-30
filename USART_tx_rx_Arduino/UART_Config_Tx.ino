@@ -37,7 +37,7 @@
 
     /////////////////////////     Define peripherals registers.
 
-    volatile uint8_t* _SER = (volatile uint8_t *) 0x3f;     //      Global Interrupt 
+    volatile uint8_t* _SER = (volatile uint8_t *) 0x5f;     //      Global Interrupt 
 
     volatile uint8_t* _UDR0 = (volatile uint8_t *) 0xC6;    //      Data Register
 
