@@ -67,7 +67,7 @@
 	then a push button is simply connected on PC1 for releasing  
 	the break point. this is a temporary code ! allowing to stop the program 
 	at a key point and probe the microcontroller IO pins (in real time condition)
-	and then step through other key points of the runtime a simple the push button. 
+	and then step through other key points of the runtime with a simple the push button. 
   *********************************************************************************************
 
 */
