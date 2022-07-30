@@ -50,7 +50,7 @@
    breakpoint_number: 
 
                       the order of the break point in the runtime in (uin8_t).
-                      -> a value of 255 make the breakpoint out of the 
+                      -> a value of 255, make the breakpoint "out" of the 
                       chronological runtime an can be triggered at any time
                       without perturbing the runtime of other breakpoints 
                       usefull for Interrupt System Routine.
@@ -60,13 +60,13 @@
                       the value is printed in (MSB first) binary format
                       with 4 bits space for easy reading.                  
 
-  ***************************************************************
+  *********************************************************************************************
 	Should be defined in the exact form as below 
 	then a push button is simply connected on PC1 for releasing  
 	the break point. this is a temporary code ! allowing to stop the program 
-	at a key point and probe the microcontroller io (in real condition)
-	and then step through other key points with the push button. 
-  ***************************************************************
+	at a key point and probe the microcontroller IO pins (in real time condition)
+	and then step through other key points of the runtime a simple the push button. 
+  *********************************************************************************************
 
 */
 uint8_t debug_flag = 0;
