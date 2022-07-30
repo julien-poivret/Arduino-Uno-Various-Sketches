@@ -44,7 +44,7 @@
 
                    (  Work only on 8 bits in it's form.  )
   
-  bp function decription: 
+  bp function description: 
   
 	       label: 
                       name of the breakpoint in char* exemple: "someting"
