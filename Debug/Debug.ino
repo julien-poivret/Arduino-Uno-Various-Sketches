@@ -69,7 +69,7 @@
 	at a key point and probe the microcontroller IO pins (in real time condition)
 	and then step through other key points of the runtime with a simple push button. 
   *********************************************************************************************
-
+     
 */
 uint8_t debug_flag = 0;
 
@@ -98,15 +98,12 @@ void bp(char* label,uint8_t breakpoint_number, uint8_t REG){
   }
 }
 
-
 void setup(){
-	Serial.begin(9600);
-	DDRC &= ~0x2;  // PC1 as inpput 
-	PORTC |= 0x2; // PC1 INPUT_PULLUP
-
-  DDRB |= 0x20; // the ON_BOARD led as OUTPUT. 
+Serial.begin(9600);
+DDRC &= ~0x2;                 // PC1 as inpput 
+PORTC |= 0x2;                 // PC1 INPUT_PULLUP
+DDRB |= 0x20;                 // the ON_BOARD led as OUTPUT. 
 }
-
 
 void loop(){
   PORTB ^= 0x20;
