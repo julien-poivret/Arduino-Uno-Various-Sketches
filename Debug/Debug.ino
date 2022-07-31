@@ -79,7 +79,7 @@ void bp(char* label,uint8_t breakpoint_number, uint8_t REG){
 	DDRC ^= 0x2;  // PC1 as inpput 
 	PORTC |= 0x2; // PC1 INPUT_PULLUP
 	*/
-	while(((PINC&0x2)>>1) && (debug_flag==breakpoint_number) || (breakpoint_number=0xFF)){
+	while(((PINC&0x2)>>1) && ((debug_flag==breakpoint_number) || (breakpoint_number==0xFF))){
 		Serial.print( label);
 		for(int8_t i=7;i>=0;i--){
 			if(!i){
