@@ -43,9 +43,13 @@
 
 
                    (  Work only on 8 bits in it's form.  )
-  
-  bp function description: 
-  
+		   
+Bp function description: 
+                       
+		      Define a sofware breakpoint and take a snap shot of a given register
+                      at the breakpoint time then a push button is presssed for switching 
+		      to an other one or simply continue the runtime.
+		       
 	       label: 
                       name of the breakpoint in char* exemple: "someting"
    
@@ -61,20 +65,12 @@
                       the 8 bit register value to watch (uint8_t)
                       the value is printed in (MSB first) binary format
                       with 4 bits space for easy reading.                  
-
-  *********************************************************************************************
-	Should be defined in the exact form as below 
-	then a push button is simply connected on PC1 for releasing  
-	the break point. this is a temporary code ! allowing to stop the program 
-	at a key point and probe the microcontroller IO pins (in real time condition)
-	and then step through other key points of the runtime with a simple push button. 
-  *********************************************************************************************
      
 */
 uint8_t debug_flag = 0;
 
 void bp(char* label,uint8_t breakpoint_number, uint8_t REG){
-	/* define this two next lines in setup()
+	/* define this three next lines in setup()
 	Serial.begin(9600);
 	DDRC &= ~0x2;  // PC1 as inpput 
 	PORTC |= 0x2; // PC1 INPUT_PULLUP
