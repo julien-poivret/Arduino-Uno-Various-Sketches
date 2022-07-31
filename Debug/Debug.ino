@@ -64,8 +64,8 @@ DDRB |= 0x20;                 // the ON_BOARD led as OUTPUT.
 void loop(){
   PORTB ^= 0x20;
   delay(250);
-  bp("brak point A",0,PINB);
+  bp("break point A",0,PINB);
   PORTB ^= 0x20;
   delay(250);
-  bp("brak point B",1,PINB);
+  bp("break point B",1,PINB);
  }
