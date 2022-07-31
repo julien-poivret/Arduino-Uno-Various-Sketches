@@ -76,7 +76,7 @@ uint8_t debug_flag = 0;
 void bp(char* label,uint8_t breakpoint_number, uint8_t REG){
 	/* define this two next lines in setup()
 	Serial.begin(9600);
-	DDRC ^= 0x2;  // PC1 as inpput 
+	DDRC &= ~0x2;  // PC1 as inpput 
 	PORTC |= 0x2; // PC1 INPUT_PULLUP
 	*/
 	while(((PINC&0x2)>>1) && ((debug_flag==breakpoint_number) || (breakpoint_number==0xFF))){
@@ -101,7 +101,7 @@ void bp(char* label,uint8_t breakpoint_number, uint8_t REG){
 
 void setup(){
 	Serial.begin(9600);
-	DDRC ^= 0x2;  // PC1 as inpput 
+	DDRC &= ~0x2;  // PC1 as inpput 
 	PORTC |= 0x2; // PC1 INPUT_PULLUP
 
   DDRB |= 0x20; // the ON_BOARD led as OUTPUT. 
