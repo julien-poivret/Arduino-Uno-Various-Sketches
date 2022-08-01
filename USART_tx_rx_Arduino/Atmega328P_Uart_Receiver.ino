@@ -58,7 +58,6 @@ void UART_send_fast(char* asci_data, uint8_t length) {
    Send data with automatic stack length (slower).
 */
 void UART_send(char* asci_data) {
-  //*_UCSR0B |= 0x8; //Tx Enabled.
   uint8_t ct = 0;
   while (1) {
     while (!(*_UCSR0A & 0x20)) { // wait for prev tx to complete
