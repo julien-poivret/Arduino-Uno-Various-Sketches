@@ -84,7 +84,6 @@ void UART_receive(char* asci_data, uint8_t length, uint8_t* Error_flag,unsigned 
         *Error_flag =1;
         break;
       }
-      //asm("");
     }
     if(*Error_flag){
       break;
