@@ -45,7 +45,6 @@ void UART0_init(uint16_t BaudRate) {
    Send data with exact predefined length (for speed).
 */
 void UART_send_fast(char* asci_data, uint8_t length) {
-  *_UCSR0B |= 0x8; //Tx Enabled.
   for (uint8_t i = 0; i < length; i++) {
     while (!(*_UCSR0A & 0x20)) { // wait for prev tx to complete
       asm("");
