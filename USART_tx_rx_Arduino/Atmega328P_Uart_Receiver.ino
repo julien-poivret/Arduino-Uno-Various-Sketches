@@ -76,6 +76,7 @@ void UART_send(char* asci_data) {
    Wait for receiving Data, and stack the received bytes.
 */
 void UART_receive(char* asci_data, uint8_t length, uint8_t* Error_flag,unsigned long timeout) {
+  *_UCSR0B &= ~0x80; // Disable Rx interrupt.
   for (uint8_t i = 0; i < length; i++) {
     unsigned long ct = millis();
     while( (!(*_UCSR0A & (1 << 7)) && (*_UCSR0A&(1<<5)))) {
@@ -90,6 +91,7 @@ void UART_receive(char* asci_data, uint8_t length, uint8_t* Error_flag,unsigned 
       *(asci_data + i) = *_UDR0;
     }
   }
+  *_UCSR0B |= 0x80; // Enable Rx interrupt flag.
 }
 
 void setup() {
