@@ -34,9 +34,9 @@ void UART0_init(uint16_t BaudRate) {
   // Set the frame in 8 bits mode.
   *_UCSR0C |= 0x6;
   *_UCSR0C &= ~0x8; // (1 stop bit).
-
-  // Enable Rx Tx mode + 8 bits mode part2.
-  *_UCSR0B = 0x18;
+  
+   // Enable Rx Tx mode + 8 bits mode part2 + Tx interrupt.
+  *_UCSR0B = 0x98;
 
   *_SER |= 0x80; // Enable global interrupt.
 }
