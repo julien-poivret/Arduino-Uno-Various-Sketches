@@ -141,7 +141,7 @@ int main(void){
 	UART_send_fast("Buffer Overflow !\n",18);
 	UART_send_fast("Electro Magnetic wave !\n",24);
 	uint8_t error_flg = 0;
-	UART_receive((char *)data_rx,24,&error_flg);
+	UART_receive((char *)data_rx,24,&error_flg,500);
 	if(error_flg){
 		UART_send("Error, Rx Connection lost !\n");
 	}else{
