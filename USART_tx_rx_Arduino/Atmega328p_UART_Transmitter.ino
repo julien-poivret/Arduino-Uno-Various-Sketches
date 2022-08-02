@@ -21,8 +21,8 @@ volatile uint8_t* _UBRR0H = (volatile uint8_t *) 0xC5;  //     Baud Rate Hight r
 volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;  //     Baud Rate low register
 
 
-
 //////////////////////////////////////////////////////////// UART0
+
 /*
    init UART0 with two possibles settings: 9600 or 115200.
 */
@@ -44,9 +44,9 @@ void UART0_init(uint16_t BaudRate) {
   // Set the frame in 8 bits mode.
   *_UCSR0C |= 0x6;
   *_UCSR0C &= ~0x8; // (1 stop bit).
-
-  // Enable Rx Tx mode + 8 bits mode part2.
-  *_UCSR0B = 0x18;
+  
+   // Enable Rx Tx mode + 8 bits mode part2 + Tx interrupt.
+  *_UCSR0B = 0x98;
 
   *_SER |= 0x80; // Enable global interrupt.
 }
@@ -55,7 +55,6 @@ void UART0_init(uint16_t BaudRate) {
    Send data with exact predefined length (for speed).
 */
 void UART_send_fast(char* asci_data, uint8_t length) {
-  *_UCSR0B |= 0x8; //Tx Enabled.
   for (uint8_t i = 0; i < length; i++) {
     while (!(*_UCSR0A & 0x20)) { // wait for prev tx to complete
       asm("");
@@ -63,11 +62,11 @@ void UART_send_fast(char* asci_data, uint8_t length) {
     *_UDR0 = *(asci_data + i); // ready!, so write the next stacked bytes on buffer.
   }
 }
+
 /*
    Send data with automatic stack length (slower).
 */
 void UART_send(char* asci_data) {
-  *_UCSR0B |= 0x8; //Tx Enabled.
   uint8_t ct = 0;
   while (1) {
     while (!(*_UCSR0A & 0x20)) { // wait for prev tx to complete
@@ -81,20 +80,29 @@ void UART_send(char* asci_data) {
     }
   }
 }
-void UART_receive(char* asci_data, uint8_t length, uint8_t* Error_flag) {
-  uint16_t ct = 0;
+
+/*
+   Wait for receiving Data, and stack the received bytes.
+*/
+void UART_receive(char* asci_data, uint8_t length, uint8_t* Error_flag,unsigned long timeout) {
+  *_UCSR0B &= ~0x80; // Disable Rx interrupt.
   for (uint8_t i = 0; i < length; i++) {
-    ct=0;
-    while( (!(*_UCSR0A & (1 << 7)) && (*_UCSR0A&(1<<5) ))) {
-      if (ct >= 0xF0) { // if time out is reach => Error !
-        *Error_flag = 1;// Timout must be adjusted...
+    unsigned long ct = millis();
+    while( (!(*_UCSR0A & (1 << 7)) && (*_UCSR0A&(1<<5)))) {
+      if((millis()-ct) >= timeout){
+        *Error_flag =1;
         break;
       }
-      ct++;
     }
-    *(asci_data + i) = *_UDR0;
+    if(*Error_flag){
+      break;
+    }else{
+      *(asci_data + i) = *_UDR0;
+    }
   }
+  *_UCSR0B |= 0x80; // Enable Rx interrupt flag.
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 char data_rx[24] = {0};
 
