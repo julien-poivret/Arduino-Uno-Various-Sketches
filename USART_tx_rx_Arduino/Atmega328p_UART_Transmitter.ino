@@ -37,7 +37,7 @@ void UART0_init(uint16_t BaudRate) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0H |=  0x3;
     *_UBRR0L = 0x40;
-  }else if (BaudRate == 9600) {
+  } else if (BaudRate == 9600) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0L = 0xCF;
   } else if (BaudRate == 115200) {
