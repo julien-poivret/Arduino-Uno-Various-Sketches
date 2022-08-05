@@ -39,6 +39,10 @@ void UART0_init(uint16_t BaudRate) {
   } else if (BaudRate == 115200) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0L = 0x10;
+  }else if (BaudRate == 2400) {
+    *_UBRR0H &= ~ 0xF;
+    *_UBRR0H |=  0x1;
+    *_UBRR0L = 0xDF;
   }
 
   // Set the frame in 8 bits mode.
