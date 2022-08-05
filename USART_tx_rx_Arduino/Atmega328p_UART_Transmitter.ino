@@ -33,7 +33,11 @@ void UART0_init(uint16_t BaudRate) {
   *_UCSR0A |= 0x2;                                     // Set the (FULL speed) for asynchronous mode.
 
   // Set the Baudrate. ----->  baud_setting = (F_CPU / 4 / baud - 1) / 2
-  if (BaudRate == 2400) {
+  if (BaudRate == 600) {
+    *_UBRR0H &= ~ 0xF;
+    *_UBRR0H |=  0xD;
+    *_UBRR0L = 0x0A;
+  } else if (BaudRate == 2400) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0H |=  0x3;
     *_UBRR0L = 0x40;
