@@ -24,7 +24,8 @@ volatile uint8_t* _UBRR0L = (volatile uint8_t *) 0xC4;  //     Baud Rate low reg
 //////////////////////////////////////////////////////////// UART0
 
 /*
-   init UART0 with two possibles settings: 9600 or 115200.
+   init the UART0 with four possibles settings:600Hz, 2400Hz, 9600Hz amd 115200 Hz.
+   at 16Mhz clock speed.
 */
 void UART0_init(uint16_t BaudRate) {
   *_SER &= ~0x80;                                      // Disable global interrupt.
