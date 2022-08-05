@@ -62,16 +62,16 @@ void UART0_init(uint16_t BaudRate) {
   *_UCSR0A |= 0x2;                                     // Set the (FULL speed) for asynchronous mode.
 
   // Set the Baudrate. ----->  baud_setting = (F_CPU / 4 / baud - 1) / 2
-  if (BaudRate == 9600) {
+  if (BaudRate == 2400) {
+    *_UBRR0H &= ~ 0xF;
+    *_UBRR0H |=  0x3;
+    *_UBRR0L = 0x40;
+  } else if (BaudRate == 9600) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0L = 0xCF;
   } else if (BaudRate == 115200) {
     *_UBRR0H &= ~ 0xF;
     *_UBRR0L = 0x10;
-  }else if (BaudRate == 2400) {
-    *_UBRR0H &= ~ 0xF;
-    *_UBRR0H |=  0x1;
-    *_UBRR0L = 0xDF;
   }
 
   // Set the frame in 8 bits mode.
