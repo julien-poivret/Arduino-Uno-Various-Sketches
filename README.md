@@ -1,6 +1,6 @@
 # Arduino-uno-Various-Sketches
 
-Collection of Various sketches as personal referance on Arduino ATMEGA328P / Arduino uno.
+Collection of Various sketches as personal referance on Arduino ATMEGA328P / Arduino uno. (updated)
 
                                       +-----+
          +----[PWR]-------------------| USB |--+
